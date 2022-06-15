@@ -1,1 +1,0 @@
-Solidwork CAD files
