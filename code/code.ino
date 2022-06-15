@@ -1,4 +1,5 @@
 #include <math.h> 
+#include <SharpIR.h>
 
 // motors
 //left wheel motor
@@ -13,10 +14,11 @@ int r_wheel_motor2 = 3;
 int vacuum_motor = 10;
 
 // sensors
-// infra-red distance sensor
-int front = A0;
-int left = A1;
-int right = A2;
+// infra-red distance sensor objects
+SharpIR front(SharpIR::GP2Y0A21YK0F, A0);
+SharpIR left(SharpIR::GP2Y0A21YK0F, A1);
+SharpIR right(SharpIR::GP2Y0A21YK0F, A2);
+
 
 //interrupt pin for ky-031  knock sensor
 const byte bumper1 = 6;
@@ -40,10 +42,10 @@ void setup(){
     //initialize digital pins of vacuum motor
     pinMode(vacuum_motor, OUTPUT);
 
-    //initialize infra-red distance sensor
-    pinMode(front, INPUT); //front sensor
-    pinMode(right, INPUT); //right sensor
-    pinMode(left, INPUT); //left sensor
+    // //initialize infra-red distance sensor
+    // pinMode(front, INPUT); //front sensor
+    // pinMode(right, INPUT); //right sensor
+    // pinMode(left, INPUT); //left sensor
 
     //intialize analog knock (bumper) sensor
     pinMode(bumper1, INPUT_PULLUP);
@@ -119,8 +121,8 @@ double distance(int sensor){
 }
 
 // conditionals
-bool blocked(int direction){
-    if (analogRead(direction) <= 10.4){
+bool blocked(SharpIR direction){
+    if (direction.getDistance( false ) <= 10){
         return true;
     }
     return false;
