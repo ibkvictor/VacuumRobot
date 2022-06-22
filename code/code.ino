@@ -15,9 +15,9 @@ int vacuum_motor = 10;
 
 // sensors
 // infra-red distance sensor objects
-SharpIR front(SharpIR::GP2Y0A21YK0F, A0);
-SharpIR left(SharpIR::GP2Y0A21YK0F, A1);
-SharpIR right(SharpIR::GP2Y0A21YK0F, A2);
+SharpIR front(SharpIR::GP2Y0A21YK0F, A2);
+SharpIR left(SharpIR::GP2Y0A21YK0F, A0);
+SharpIR right(SharpIR::GP2Y0A21YK0F, A1);
 
 
 //interrupt pin for ky-031  knock sensor
@@ -27,7 +27,7 @@ const byte bumper3 = 8;
 const byte bumper4 = 9;
 
 //const pulse width modulator
-const int PWMmin = 140; // 0 - 255  representing 0 - max volts
+const int PWMmin = 90; // 0 - 255  representing 0 - max volts
 
 void setup(){
     //transmit feedback signal over serial monitor at 9600 baud rate
